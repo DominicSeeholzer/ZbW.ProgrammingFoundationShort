@@ -22,17 +22,42 @@ public partial class RabattKalkulatorForm : Form
 
   private void CmdBerechnen_Click(object sender, EventArgs e)
   {
-    // TODO 1: Betrag aus TxtBetrag lesen (decimal.TryParse), muss grösser als 0 sein
-    //         Bei ungültiger Eingabe: MessageBox anzeigen und return
+    //Eingabe validieren, wenn kleiner als 0 Warnmeldung
+    if (!decimal.TryParse(TxtBetrag.Text, out decimal betragOutput) || betragOutput <= 0)
+    {
+      MessageBox.Show("Wert muss über 0 sein", "Ungültiger Wert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      return;
+    }
 
-    // TODO 2: Rabatt aus RadioButton ermitteln
-    //         RadNormal = 0%, RadPremium = 10%, RadVip = 20%
+    int rabattWert;
 
-    // TODO 3: Wenn ChkLehrling.Checked → Rabatt += 5
+    if (RadVip.Checked)
+    {
+      rabattWert = 20;
+    }
+    else if (RadPremium.Checked)
+    {
+      rabattWert = 10;
+    }
+    else
+    {
+      rabattWert = 0; //Normal
+    }
 
-    // TODO 4: Rabatt in CHF und Endbetrag berechnen:
-    //         rabattBetrag = betrag * rabatt / 100m;  endbetrag = betrag - rabattBetrag
+    //Lehrlingzuschlag
+    if (ChkLehrling.Checked)
+    {
+      rabattWert += 5;
+    }
 
-    // TODO 5: LblErgebnis.Text setzen: Originalbetrag, Rabatt in CHF (und %), Endbetrag
+    //Rabatt in CHF und Endbetrag
+    decimal rabattBetrag = betragOutput * rabattWert / 100m;
+    decimal endbetrag = betragOutput - rabattBetrag;
+
+    //Ergebnis anzeigen
+    LblErgebnis.Text =
+      $"Originalbetrag: {betragOutput:F2} CHF{Environment.NewLine}" +
+      $"Rabatt: {rabattBetrag:F2} CHF ({rabattBetrag} %){Environment.NewLine}" +
+      $"Endbetrag: {endbetrag:F2} CHF";
   }
 }
