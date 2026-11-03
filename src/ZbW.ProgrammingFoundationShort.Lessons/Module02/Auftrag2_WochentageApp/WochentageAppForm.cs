@@ -17,20 +17,38 @@ public partial class WochentageAppForm : Form
   public WochentageAppForm()
   {
     InitializeComponent();
-    // TODO 1: ComboBox-Items befüllen: "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"
-    //         CmbWochentag.SelectedIndex = 0;
+
+    //Array erstellen für jeden Wochentag
+    string[] wochenTage = { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
+    //übergib den Inhalt der Array auf jede Zeile sep. aus
+    CmbWochentag.Items.AddRange(wochenTage);
   }
 
   private void CmdAnzeigen_Click(object sender, EventArgs e)
   {
-    // TODO 2: Gewählten Tag aus CmbWochentag lesen (CmbWochentag.Text)
+    //Gewählten Tag aus CmbWochentag lesen (CmbWochentag.Text)
+    string inputTag = CmbWochentag.Text;
 
-    // TODO 3: switch expression → bool istWerktag
-    //         ("Samstag" or "Sonntag" → false, sonst true)
+    //Eingabe prüfen, bevor etwas berechnet wird
+    if (string.IsNullOrEmpty(inputTag))
+    {
+      MessageBox.Show("Wähle einen Wochentag aus", "Ungültiger Wert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      return;
+    }
 
-    // TODO 4: Ternären Operator → "Werktag" oder "Wochenende"
-    //         string typ = istWerktag ? "Werktag" : "Wochenende";
+    //switch expression -> bool
+    bool istWerktag = true;
 
-    // TODO 5: LblErgebnis.Text setzen
+    istWerktag = inputTag switch
+    {
+      "Samstag" or "Sonntag" => false,
+      _ => true
+    };
+
+    //tenärer Operator ? :
+    string wochenTyp = istWerktag ? "Werktag" : "Wochenende";
+
+    //Ergebnis anzeigen
+    LblErgebnis.Text = $"{inputTag} ist ein {wochenTyp}";
   }
 }
