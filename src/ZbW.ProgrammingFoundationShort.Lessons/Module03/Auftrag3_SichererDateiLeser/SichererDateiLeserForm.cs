@@ -23,20 +23,43 @@ public partial class SichererDateiLeserForm : Form
   private void CmdLesen_Click(object sender, EventArgs e)
   {
     LstZeilen.Items.Clear();
+    LblStatus.Text = "Lese...";
+    CmdLesen.Enabled = false;
 
-    // TODO 1: try-catch-finally starten
+    try
+    {
+      //Datei einlesen
+      string[] zeilen = File.ReadAllLines(TxtPfad.Text);
 
-    // TODO 2: im try-Block:
-    //         string[] zeilen = File.ReadAllLines(TxtPfad.Text);
-    //         for-Schleife: LstZeilen.Items.Add($"{i+1}: {zeilen[i]}")
+      // Zeilen mit Nummer in ListBox laden
+      for (int i = 0; i < zeilen.Length; i++)
+      {
+        LstZeilen.Items.Add($"{i + 1,4}: {zeilen[i]}");
+      }
 
-    // TODO 3: catch (FileNotFoundException ex):
-    //         MessageBox mit Datei-nicht-gefunden-Meldung
+      LblStatus.Text = $"{zeilen.Length} Zeile(n) geladen.";
+    }
 
-    // TODO 4: catch (Exception ex):
-    //         MessageBox mit allgemeiner Fehlermeldung
 
-    // TODO 5: finally (läuft immer):
-    //         CmdLesen.Enabled = true;
+    catch (FileNotFoundException)
+    {
+      MessageBox.Show($"Die Datei wurde nicht gefunden\r\n {LstZeilen.Text}",
+        "Ungültige Eingabe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      LblStatus.Text = "Datei wurde nicht gefunden.";
+    }
+
+    catch (Exception ex)
+    {
+      MessageBox.Show($"Fehler beim lesen {ex.Message}",
+        "Allgemeiner Fehler", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+      LblStatus.Text = "Fehler beim Lesen.";
+    }
+
+
+    finally
+    {
+      // finally wird immer ausgeführt – egal ob Erfolg oder Fehler
+      CmdLesen.Enabled = true;
+    }
   }
 }

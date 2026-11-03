@@ -24,7 +24,7 @@ public static class PasswortValidator
     {
       //Passwort eingeben und in variable speichern
       Console.WriteLine("Passwort eingeben:");
-      passwort = Console.ReadLine() ?? "";
+      passwort = Console.ReadLine();
 
       //Zeichen überprüfen
       bool hatZiffer = false;
