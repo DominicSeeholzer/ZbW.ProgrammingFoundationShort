@@ -16,16 +16,43 @@ public static class PasswortValidator
 {
   public static void Start()
   {
-    // TODO 1: string passwort; bool gueltig;
-    //         do { ... } while (!gueltig);
+    //variablen erstellen
+    string passwort;
+    bool gueltig;
 
-    // TODO 2: In der Schleife Passwort einlesen (Console.ReadLine() ?? "")
+    do
+    {
+      //Passwort eingeben und in variable speichern
+      Console.WriteLine("Passwort eingeben:");
+      passwort = Console.ReadLine() ?? "";
 
-    // TODO 3: bool hatZiffer = false;
-    //         foreach (char zeichen in passwort) → char.IsDigit(zeichen) prüfen
+      //Zeichen überprüfen
+      bool hatZiffer = false;
+      foreach (char zeichen in passwort)
+      {
+        if (char.IsDigit(zeichen))
+        {
+          hatZiffer = true;
+          break;
+        }
+      }
 
-    // TODO 4: gueltig berechnen und konkrete Fehlermeldung ausgeben
+      //Passwort länge überprüfen mind. 8 und Ziffer erforderlich
+      gueltig = passwort.Length >= 8 && hatZiffer;
+      if (!gueltig)
+      {
+        Console.WriteLine("Ungültiges Passwort!");
+        if (passwort.Length < 8)
+        {
+          Console.WriteLine("  - Mindestens 8 Zeichen erforderlich.");
+        }
 
-    // TODO 5: Nach der Schleife Erfolgsmeldung ausgeben
+        if (!hatZiffer)
+        {
+          Console.WriteLine("  - Mindestens eine Ziffer erforderlich.");
+        }
+      } //wenn gültig Text ausgeben
+    } while (!gueltig);
+      Console.WriteLine("Passwort ist gültig");
   }
 }
