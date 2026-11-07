@@ -14,13 +14,13 @@ internal static class Program
     ApplicationConfiguration.Initialize();
 
     // ---- Modul 01 ----
-    // ZbW.ProgrammingFoundationShort.Lessons.Module01.Auftrag1_Taschenrechner.Taschenrechner.Start();
-    // Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module01.Auftrag2_Temperaturrechner.TemperaturrechnerForm());
-    // ZbW.ProgrammingFoundationShort.Lessons.Module01.Auftrag3_DatentypQuiz.DatentypQuiz.Start();
+    // ZbW.ProgrammingFoundationShort.Lessons.Module01.Auftrag1_Taschenrechner.Taschenrechner.Start();                                  Fertig
+    // Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module01.Auftrag2_Temperaturrechner.TemperaturrechnerForm());         Fertig
+    // ZbW.ProgrammingFoundationShort.Lessons.Module01.Auftrag3_DatentypQuiz.DatentypQuiz.Start();                                      Fertig
 
     // ---- Modul 02 ----
-    //Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module02.Auftrag1_Notenrechner.NotenrechnerForm());
-    //Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module02.Auftrag2_WochentageApp.WochentageAppForm());
+    // Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module02.Auftrag1_Notenrechner.NotenrechnerForm());                   Fertig
+    // Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module02.Auftrag2_WochentageApp.WochentageAppForm());                 Fertig
     //Application.Run(new ZbW.ProgrammingFoundationShort.Lessons.Module02.Auftrag3_RabattKalkulator.RabattKalkulatorForm());
 
     // ---- Modul 03 ----

@@ -19,9 +19,15 @@ public partial class WochentageAppForm : Form
     InitializeComponent();
 
     //Array erstellen für jeden Wochentag
-    string[] wochenTage = { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
+    string[] wochentag = { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
     //übergib den Inhalt der Array auf jede Zeile sep. aus
-    CmbWochentag.Items.AddRange(wochenTage);
+    foreach (string w in wochentag)
+    {
+      CmbWochentag.Items.Add(w);
+    }
+
+    CmbWochentag.SelectedIndex = 0;
+
   }
 
   private void CmdAnzeigen_Click(object sender, EventArgs e)
@@ -29,26 +35,15 @@ public partial class WochentageAppForm : Form
     //Gewählten Tag aus CmbWochentag lesen (CmbWochentag.Text)
     string inputTag = CmbWochentag.Text;
 
-    //Eingabe prüfen, bevor etwas berechnet wird
-    if (string.IsNullOrEmpty(inputTag))
-    {
-      MessageBox.Show("Wähle einen Wochentag aus", "Ungültiger Wert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-      return;
-    }
-
     //switch expression -> bool
-    bool istWerktag = true;
-
-    istWerktag = inputTag switch
+    bool istWerktag = inputTag switch
     {
       "Samstag" or "Sonntag" => false,
       _ => true
     };
 
     //tenärer Operator ? :
-    string wochenTyp = istWerktag ? "Werktag" : "Wochenende";
-
-    //Ergebnis anzeigen
-    LblErgebnis.Text = $"{inputTag} ist ein {wochenTyp}";
+    string typ = istWerktag ? "Werktag" : "Wochenende";
+    LblErgebnis.Text = $"{inputTag} ist ein {typ}";
   }
 }

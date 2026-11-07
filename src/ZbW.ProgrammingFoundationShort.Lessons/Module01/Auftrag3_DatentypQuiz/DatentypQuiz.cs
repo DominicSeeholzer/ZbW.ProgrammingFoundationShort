@@ -22,6 +22,8 @@ public static class DatentypQuiz
   /// </summary>
   public static void Start()
   {
+
+    var stopwatch = System.Diagnostics.Stopwatch.StartNew();
     // TODO (Bonus): Stopwatch starten
     //         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
@@ -42,18 +44,62 @@ public static class DatentypQuiz
     }
 
     // TODO 2: Frage 2 (Text) – z. B. «Welcher Typ eignet sich für Geldbeträge?» → decimal
+    Console.WriteLine("Frage 2: Welcher Typ eignet sich für Geldbeträge?");
+    string antwort2 = (Console.ReadLine() ?? "").Trim().ToLower();
+
+    if (antwort2 == "decimal")
+    {
+      Console.WriteLine("  Richtig!");
+      punkte++;
+    }
+    else
+    {
+      Console.WriteLine("  Falsch. Die Richtige Antwort wäre: 'decimal'");
+    }
 
     // TODO 3: Frage 3 (Zahl) – z. B. «Was ergibt 7 / 2, wenn beide Zahlen int sind?» → 3
-    //         if (int.TryParse(Console.ReadLine() ?? "", out int antwort3) && antwort3 == 3)
+    Console.WriteLine("Frage 3: Was ergibt 7 / 2, wenn beide Zahlen int sind?");
+    if (int.TryParse(Console.ReadLine() ?? "", out int antwort3) && antwort3 == 3)
+    {
+      Console.WriteLine("  Richtig!");
+      punkte++;
+    }
 
+    else
+    {
+      Console.WriteLine("  Falsch. Die Richtige Antwort wäre: '3'");
+    }
     // TODO 4: Frage 4 (Zahl) – z. B. «Was ergibt 10 % 3?» → 1
+    Console.WriteLine("Frage 4: Was gibt 10 % 3?");
+    if (int.TryParse(Console.ReadLine() ?? "", out int antwort4) && antwort4 == 1)
+    {
+      Console.WriteLine("  Richtig!");
+      punkte++;
+    }
+
+    else
+    {
+      Console.WriteLine("  Falsch. Die Richtige Antwort wäre: '1'");
+    }
 
     // TODO 5: Frage 5 (Text) – z. B. «Welcher Typ speichert genau ein Zeichen?» → char
+    Console.WriteLine("Frage 5: Welcher Typ speichert genau ein Zeichen?");
+    string antwort5 = (Console.ReadLine() ?? "").Trim().ToLower();
+
+    if (antwort5 == "char")
+    {
+      Console.WriteLine("  Richtigè");
+      punkte++;
+    }
+
+    else
+    {
+      Console.WriteLine("  Falsch. Die richtige Antwort wäre 'char'");
+    }
 
     Console.WriteLine($"Resultat: {punkte}/5");
 
-    // TODO (Bonus): Stopwatch stoppen und Zeit ausgeben
-    //         stopwatch.Stop();
-    //         Console.WriteLine($"Zeit: {stopwatch.Elapsed.TotalSeconds:F1} Sekunden");
+    stopwatch.Stop();
+    Console.WriteLine($"Zeit: {stopwatch.Elapsed.TotalSeconds:F1} Sekunden");
   }
 }
