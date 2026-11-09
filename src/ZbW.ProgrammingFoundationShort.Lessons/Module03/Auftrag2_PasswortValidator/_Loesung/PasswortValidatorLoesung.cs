@@ -32,7 +32,8 @@ public static class PasswortValidatorLoesung
       if (!gueltig)
       {
         Console.WriteLine("Ungültiges Passwort!");
-        if (passwort.Length < 8)
+
+        if (passwort.Length > 8)
         {
           Console.WriteLine("  - Mindestens 8 Zeichen erforderlich.");
         }

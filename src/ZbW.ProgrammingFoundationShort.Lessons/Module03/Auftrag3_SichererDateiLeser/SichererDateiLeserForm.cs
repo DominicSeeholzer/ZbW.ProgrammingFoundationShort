@@ -24,7 +24,37 @@ public partial class SichererDateiLeserForm : Form
   {
     LstZeilen.Items.Clear();
 
+
     // TODO 1: try-catch-finally starten
+    try
+    {
+      string[] zeilen = File.ReadAllLines(TxtPfad.Text);
+      for (int i = 0; i < zeilen.Length; i++)
+      {
+        LstZeilen.Items.Add($"{i + 1}: {zeilen[i]}");
+      }
+
+      LblStatus.Text = $"{zeilen.Length} Zeile(n) geladen";
+    }
+
+    catch (FileNotFoundException ex)
+    {
+      MessageBox.Show($"Datei nicht gefunden:\r\n{TxtPfad.Text}",
+        "Ungültiger Pfad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      LblStatus.Text = "Fehler, Datei nicht gefunden";
+    }
+
+    catch (Exception ex)
+    {
+      MessageBox.Show($"Fehler beim lesen: {ex.Message}",
+        "Fehler beim lesen der Datei", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      LblStatus.Text = "Allgemeiner Fehler";
+    }
+
+    finally
+    {
+      CmdLesen.Enabled = true;
+    }
 
     // TODO 2: im try-Block:
     //         string[] zeilen = File.ReadAllLines(TxtPfad.Text);
