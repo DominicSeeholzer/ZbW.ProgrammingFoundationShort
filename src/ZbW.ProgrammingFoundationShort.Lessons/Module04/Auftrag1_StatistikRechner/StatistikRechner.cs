@@ -17,9 +17,19 @@ public static class StatistikRechner
   {
     // TODO 1: int[5]-Array deklarieren
     //         5 Zahlen einlesen und im Array speichern
+    int[] array = new int[5];
+
+    Console.WriteLine("Gib 5 Zahlen ein");
+
+    for (int i = 0; i < array.Length; i++)
+    {
+      
+    }
 
     // TODO 2: Methoden aufrufen und Ergebnis ausgeben
-    //         Console.WriteLine($"Min: {Minimum(zahlen)}, Max: {Maximum(zahlen)}, Avg: {Average(zahlen):F2}");
+    //         Console.WriteLine($"Min: {Minimum(zahlen)},
+    //         Max: {Maximum(zahlen)}, Avg: {Average(zahlen):F2}");
+    
   }
 
   public static int Minimum(int[] zahlen)
